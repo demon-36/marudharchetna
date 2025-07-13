@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Contact Form Handling
+// Contact Form Handling with Formspree
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -76,22 +76,39 @@ if (contactForm) {
         submitBtn.innerHTML = '<span class="loading"></span> Sending...';
         submitBtn.disabled = true;
         
-        // Simulate form submission (replace with actual backend integration)
-        setTimeout(() => {
-            // Show success message
-            showMessage('Thank you for your message! We will get back to you soon.', 'success');
-            
-            // Reset form
-            this.reset();
-            
+        // Submit to Formspree
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Show success message
+                showMessage('Thank you for your message! We will get back to you soon.', 'success', this);
+                
+                // Reset form
+                this.reset();
+            } else {
+                // Show error message
+                showMessage('Sorry, there was an error sending your message. Please try again.', 'error', this);
+            }
+        })
+        .catch(error => {
+            // Show error message
+            showMessage('Sorry, there was an error sending your message. Please try again.', 'error', this);
+        })
+        .finally(() => {
             // Reset button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-        }, 2000);
+        });
     });
 }
 
-// Donation Form Handling
+// Donation Form Handling with Formspree
 const donationForm = document.getElementById('donation-form');
 if (donationForm) {
     donationForm.addEventListener('submit', function(e) {
@@ -105,40 +122,57 @@ if (donationForm) {
         submitBtn.innerHTML = '<span class="loading"></span> Processing...';
         submitBtn.disabled = true;
         
-        // Simulate form submission (replace with actual backend integration)
-        setTimeout(() => {
-            // Show success message with donation details
-            const method = formData.get('donation-method');
-            let message = 'Thank you for your interest in supporting our cause! ';
-            
-            switch(method) {
-                case 'bank':
-                    message += 'We will send you our bank account details via email shortly.';
-                    break;
-                case 'upi':
-                    message += 'We will send you our UPI payment details via email shortly.';
-                    break;
-                case 'in-person':
-                    message += 'Please visit our office in Bikaner, Rajasthan during office hours.';
-                    break;
-                default:
-                    message += 'We will contact you with donation details shortly.';
+        // Submit to Formspree
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
             }
-            
-            showMessage(message, 'success');
-            
-            // Reset form
-            this.reset();
-            
+        })
+        .then(response => {
+            if (response.ok) {
+                // Show success message with donation details
+                const method = formData.get('donation-method');
+                let message = 'Thank you for your interest in supporting our cause! ';
+                
+                switch(method) {
+                    case 'bank':
+                        message += 'We will send you our bank account details via email shortly.';
+                        break;
+                    case 'upi':
+                        message += 'We will send you our UPI payment details via email shortly.';
+                        break;
+                    case 'in-person':
+                        message += 'Please visit our office in Bikaner, Rajasthan during office hours.';
+                        break;
+                    default:
+                        message += 'We will contact you with donation details shortly.';
+                }
+                
+                showMessage(message, 'success', this);
+                
+                // Reset form
+                this.reset();
+            } else {
+                // Show error message
+                showMessage('Sorry, there was an error processing your request. Please try again.', 'error', this);
+            }
+        })
+        .catch(error => {
+            // Show error message
+            showMessage('Sorry, there was an error processing your request. Please try again.', 'error', this);
+        })
+        .finally(() => {
             // Reset button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-        }, 2000);
+        });
     });
 }
 
 // Message display function
-function showMessage(message, type) {
+function showMessage(message, type, formElement = null) {
     // Remove existing messages
     const existingMessages = document.querySelectorAll('.message');
     existingMessages.forEach(msg => msg.remove());
@@ -147,11 +181,38 @@ function showMessage(message, type) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${type}`;
     messageDiv.textContent = message;
+    messageDiv.style.cssText = `
+        padding: 1rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        font-weight: 500;
+        ${type === 'success' ? 
+            'background: #d4edda; color: #155724; border: 1px solid #c3e6cb;' : 
+            'background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;'
+        }
+    `;
     
-    // Insert message before the form
-    const form = document.querySelector('.contact-form, .donate-form');
-    if (form) {
-        form.insertBefore(messageDiv, form.firstChild);
+    // Find the correct form container
+    let formContainer = null;
+    
+    if (formElement) {
+        // If form element is provided, find its parent container
+        formContainer = formElement.closest('.contact-form, .donate-form');
+    } else {
+        // Fallback to finding any form container
+        if (document.querySelector('.contact-form')) {
+            formContainer = document.querySelector('.contact-form');
+        } else if (document.querySelector('.donate-form')) {
+            formContainer = document.querySelector('.donate-form');
+        }
+    }
+    
+    // Insert message at the beginning of the form container
+    if (formContainer) {
+        formContainer.insertBefore(messageDiv, formContainer.firstChild);
+        
+        // Scroll to the message
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     
     // Auto-remove message after 5 seconds
