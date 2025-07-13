@@ -1,0 +1,44 @@
+<svg width="180" height="50" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Desert gradient -->
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a574;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#b8860b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b4513;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Sun gradient -->
+    <radialGradient id="logoSun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff8c00;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Icon container -->
+  <g transform="translate(10, 5)">
+    <!-- Rising sun -->
+    <circle cx="20" cy="15" r="10" fill="url(#logoSun)" opacity="0.9"/>
+    
+    <!-- Sun rays (simplified) -->
+    <g stroke="#ffd700" stroke-width="1.5" opacity="0.8">
+      <line x1="20" y1="5" x2="20" y2="1"/>
+      <line x1="20" y1="25" x2="20" y2="29"/>
+      <line x1="10" y1="15" x2="6" y2="15"/>
+      <line x1="30" y1="15" x2="34" y2="15"/>
+    </g>
+    
+    <!-- Desert dunes -->
+    <path d="M 0 35 Q 15 28 30 35 Q 45 42 60 35 L 60 40 L 0 40 Z" fill="url(#logoGradient)" opacity="0.7"/>
+    
+    <!-- Tree (simplified) -->
+    <rect x="25" y="30" width="2" height="6" fill="#8b4513"/>
+    <circle cx="26" cy="28" r="3" fill="#228b22" opacity="0.8"/>
+  </g>
+  
+  <!-- Text -->
+  <g transform="translate(70, 0)">
+    <text x="0" y="18" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#8b4513">MARUDHAR</text>
+    <text x="0" y="32" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#8b4513">CHETNA</text>
+    <text x="0" y="45" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="500" fill="#b8860b">FOUNDATION</text>
+  </g>
+</svg> 

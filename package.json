@@ -1,0 +1,38 @@
+{
+  "name": "marudhar-chetna-foundation",
+  "version": "1.0.0",
+  "description": "Official website for Marudhar Chetna Foundation - A public charitable trust working to uplift rural communities in Rajasthan's Thar Desert",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "build": "echo 'No build process required for static site'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "ngo",
+    "charity",
+    "rural-development",
+    "rajasthan",
+    "thar-desert",
+    "education",
+    "environment",
+    "cultural-preservation"
+  ],
+  "author": "Marudhar Chetna Foundation",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/marudhar-chetna-foundation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/marudhar-chetna-foundation/issues"
+  },
+  "homepage": "https://marudharchetna.org",
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 

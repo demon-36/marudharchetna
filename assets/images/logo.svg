@@ -1,0 +1,60 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Desert gradient -->
+    <linearGradient id="desertGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a574;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#b8860b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b4513;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Sun gradient -->
+    <radialGradient id="sunGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff8c00;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Sand pattern -->
+    <pattern id="sandPattern" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="0.5" fill="#d4a574" opacity="0.3"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background sand pattern -->
+  <rect width="200" height="60" fill="url(#sandPattern)" opacity="0.1"/>
+  
+  <!-- Rising sun -->
+  <circle cx="25" cy="20" r="12" fill="url(#sunGradient)" opacity="0.9"/>
+  
+  <!-- Sun rays -->
+  <g stroke="#ffd700" stroke-width="1" opacity="0.7">
+    <line x1="25" y1="8" x2="25" y2="2"/>
+    <line x1="25" y1="32" x2="25" y2="38"/>
+    <line x1="13" y1="20" x2="7" y2="20"/>
+    <line x1="37" y1="20" x2="43" y2="20"/>
+    <line x1="16" y1="12" x2="11" y2="7"/>
+    <line x1="34" y1="28" x2="39" y2="33"/>
+    <line x1="16" y1="28" x2="11" y2="33"/>
+    <line x1="34" y1="12" x2="39" y2="7"/>
+  </g>
+  
+  <!-- Desert dunes -->
+  <path d="M 0 45 Q 30 35 60 45 Q 90 55 120 45 Q 150 35 180 45 L 180 60 L 0 60 Z" fill="url(#desertGradient)" opacity="0.8"/>
+  
+  <!-- Tree silhouette -->
+  <g fill="#8b4513">
+    <!-- Tree trunk -->
+    <rect x="85" y="40" width="3" height="8"/>
+    <!-- Tree branches -->
+    <circle cx="87" cy="38" r="4" fill="#228b22" opacity="0.8"/>
+    <circle cx="84" cy="36" r="3" fill="#228b22" opacity="0.8"/>
+    <circle cx="90" cy="36" r="3" fill="#228b22" opacity="0.8"/>
+  </g>
+  
+  <!-- Foundation name -->
+  <text x="100" y="15" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#8b4513">MARUDHAR</text>
+  <text x="100" y="25" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#8b4513">CHETNA</text>
+  <text x="100" y="35" font-family="Arial, sans-serif" font-size="6" font-weight="normal" text-anchor="middle" fill="#b8860b">FOUNDATION</text>
+  
+  <!-- Decorative border -->
+  <rect x="2" y="2" width="196" height="56" rx="3" fill="none" stroke="url(#desertGradient)" stroke-width="1" opacity="0.3"/>
+</svg> 
